@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Определение пола ребенка</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #1e90ff;
+            text-align: center;
+            padding: 50px;
+        }
+        input, select {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #1e90ff;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4682b4;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Определение пола ребенка</h1>
+    
+    <label for="birthDate">Дата рождения женщины:</label>
+    <input type="date" id="birthDate" required><br>
+ 
+    <label for="conceptionMonth">Месяц зачатия:</label>
+    <select id="conceptionMonth">
+        <option value="1">Январь</option>
+        <option value="2">Февраль</option>
+        <option value="3">Март</option>
+        <option value="4">Апрель</option>
+        <option value="5">Май</option>
+        <option value="6">Июнь</option>
+        <option value="7">Июль</option>
+        <option value="8">Август</option>
+        <option value="9">Сентябрь</option>
+        <option value="10">Октябрь</option>
+        <option value="11">Ноябрь</option>
+        <option value="12">Декабрь</option>
+    </select><br>
+ 
+    <label for="conceptionYear">Год зачатия:</label>
+    <input type="number" id="conceptionYear" required><br>
+ 
+    <button onclick="determineGender()">Определить пол ребенка</button>
+ 
+    <h2 id="result"></h2>
+ 
+    <script>
+        function determineGender() {
+            const birthDate = new Date(document.getElementById("birthDate").value);
+            const conceptionMonth = parseInt(document.getElementById("conceptionMonth").value);
+            const conceptionYear = parseInt(document.getElementById("conceptionYear").value);
+ 
+            // Простой алгоритм для определения пола
+            const sum = (birthDate.getFullYear() + conceptionYear + conceptionMonth) % 2;
+            if (sum === 0) {
+                document.getElementById("result").innerText = "Пол ребенка: Девочка";
+            } else {
+                document.getElementById("result").innerText = "Пол ребенка: Мальчик";
+            }
+        }
+    </script>
+</body>
+</html>
